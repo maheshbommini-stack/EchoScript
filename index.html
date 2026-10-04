@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EchoScript — Speech-to-Text Note Analyzer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div>
+                <h1>EchoScript</h1>
+                <p>SPEECH → TEXT ANALYZER</p>
+            </div>
+        </div>
+
+        <div class="system-status">
+            <span id="statusLight"></span>
+            <span id="statusText">SYSTEM READY</span>
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-copy">
+            <div class="eyebrow">VOICE INTELLIGENCE / 10</div>
+
+            <h2>
+                Speak it.<br>
+                <span>See it.</span>
+            </h2>
+
+            <p>
+                Turn your speech into a live transcript and discover
+                useful patterns in the way you speak.
+            </p>
+        </div>
+
+
+        <!-- RECORDING CONSOLE -->
+
+        <div class="console">
+
+            <div class="console-top">
+                <span>VOICE CONSOLE</span>
+                <span id="timer">00:00</span>
+            </div>
+
+
+            <div class="mic-stage">
+
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <button id="recordBtn" class="record-button">
+                    <div class="mic-symbol">●</div>
+                    <span id="recordLabel">START</span>
+                </button>
+
+            </div>
+
+
+            <!-- WAVEFORM -->
+
+            <div class="waveform" id="waveform">
+
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+
+            </div>
+
+            <div class="console-footer">
+                <span id="micStatus">Microphone inactive</span>
+                <span>WEB SPEECH API</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LIVE TRANSCRIPT -->
+
+    <section class="transcript-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">LIVE TRANSCRIPT</span>
+                <h3>Your voice, in text.</h3>
+            </div>
+
+            <div class="transcript-actions">
+
+                <button id="copyBtn">
+                    COPY
+                </button>
+
+                <button id="clearBtn">
+                    CLEAR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="transcript-box">
+
+            <div class="line-number" id="lineNumber">
+                01
+            </div>
+
+            <div
+                id="transcript"
+                class="transcript"
+            >
+                Your speech transcript will appear here...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANALYTICS -->
+
+    <section class="analytics">
+
+        <div class="analytics-title">
+            <span class="eyebrow">SPEECH ANALYTICS</span>
+            <h3>What your transcript reveals.</h3>
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat">
+                <span class="stat-label">WORDS</span>
+                <strong id="wordCount">0</strong>
+                <small>Total spoken words</small>
+            </div>
+
+            <div class="stat">
+                <span class="stat-label">SENTENCES</span>
+                <strong id="sentenceCount">0</strong>
+                <small>Detected sentences</small>
+            </div>
+
+            <div class="stat">
+                <span class="stat-label">FILLERS</span>
+                <strong id="fillerCount">0</strong>
+                <small>Filler words detected</small>
+            </div>
+
+            <div class="stat">
+                <span class="stat-label">REPEATS</span>
+                <strong id="repeatCount">0</strong>
+                <small>Repeated words</small>
+            </div>
+
+        </div>
+
+
+        <!-- SECONDARY METRICS -->
+
+        <div class="secondary-grid">
+
+            <div class="metric-panel">
+
+                <div class="panel-head">
+                    <span>VOCABULARY DIVERSITY</span>
+                    <strong id="diversityValue">0%</strong>
+                </div>
+
+                <div class="meter">
+                    <div id="diversityBar"></div>
+                </div>
+
+                <p>
+                    Percentage of unique words compared with total words.
+                </p>
+
+            </div>
+
+
+            <div class="metric-panel">
+
+                <div class="panel-head">
+                    <span>SPEAKING PACE</span>
+                    <strong id="paceValue">0 WPM</strong>
+                </div>
+
+                <div class="meter">
+                    <div id="paceBar"></div>
+                </div>
+
+                <p id="paceDescription">
+                    Start speaking to calculate your pace.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSIGHT -->
+
+    <section class="insight">
+
+        <div class="insight-mark">
+            ◉
+        </div>
+
+        <div>
+            <span class="eyebrow">ECHOSCRIPT INSIGHT</span>
+
+            <h3 id="insightTitle">
+                Your speech analysis will appear here.
+            </h3>
+
+            <p id="insightText">
+                Start recording and speak naturally. EchoScript will
+                analyze the generated transcript locally in your browser.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>ECHOSCRIPT / TEXT & SPEECH ANALYSIS</span>
+
+        <span>
+            CLIENT-SIDE • NO SERVER REQUIRED
+        </span>
+
+    </footer>
+
+</div>
+
+
+<div id="toast" class="toast">
+    Copied to clipboard
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
